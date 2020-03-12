@@ -84,7 +84,13 @@ would you update?: [y/n]y
     - 브라우저 접속 
 
 4. 접속 로그 확인 (리눅스에서 진행 )
-    - $ tail -f /var/apache2/access.log
+    - $ tail -f /var/log/apache2/access.log
+    - 모니터링하다가 
+    - 종료 : ctrl +c 
+
+5. 에러 로그 
+    - $ tail -f /var/log/apache2/error.log
+    - 종료 : ctrl +c 
 
 ``` bash
 # 디렉토리 확인 
@@ -96,8 +102,8 @@ README.md  deploy.json  fabfile.py  reguirements.txt  run.py  wsgi.py
 ubuntu@ip-***:~/deploy$
 
 # 로그 확인 
-ubuntu@ip-***:~/deploy$ tail -f /var/apache2/access.log
-tail: cannot open '/var/apache2/access.log' for reading: No such file or directory
+ubuntu@ip-***:~/deploy$ tail -f /var/log/apache2/access.log
+tail: cannot open '/var/log/apache2/access.log' for reading: No such file or directory
 tail: no files remaining
 ubuntu@ip-***:~/deploy$ # 동작 안함 - 서버 요청이 막힘 
 
@@ -106,9 +112,11 @@ ubuntu@ip-***:~/deploy$ # 동작 안함 - 서버 요청이 막힘
 - 새로 생성 
     - http -> anywhere
 ---
-# 이후 과정 
-- `$ fab deploy`
-# 잘 안될때 
+## 이후 과정 
+- 업데이트 
+    - `$ fab deploy`
+---
+## 잘 안될때 
 - 소스 코드상에 , 파일 명, 설정 값등 오타가 없어야 한다. 
 - git에 최종 소스코드가 올라 가있어야 한다 
 - 리눅스에서 기존의 흔적을 모드 삭제 해야한다 
@@ -118,3 +126,37 @@ $ rm -r -f .virtualenvs
 - 로컬 PC
 $ fab new_server
 ```
+---
+
+## 가상호스트가 설정된 부분 
+- deploy 프로젝트 명 - json에 정의 되어 있음 
+    - $ cat /etc/apache2/sites-available/deploy.conf
+
+    ```bash
+    <VirtualHost *:80>
+    ServerName 13.209.97.183
+    <Directory /home/ubuntu/deploy>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+    WSGIDaemonProcess deploy python-home=/home/ubuntu/.virtualenvs/deploy python-path=/home/ubuntu/deploy
+    WSGIProcessGroup deploy
+    WSGIScriptAlias / /home/ubuntu/deploy/wsgi.py
+
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+    </VirtualHost>
+    ```
+- 서버 주소 변경 
+    - git 업로드
+
+- 변경후 
+    - 업데이트 
+        - `$ fab deploy`
+
+- 변경 됨 
+
+#### 여기까지 배포 운영 
+-- 
