@@ -31,10 +31,8 @@ deploy
     "REMOTE_USER":"ubuntu"
   }
 ```
-
 6. requirements.txt 
     - 본서비스를 구동하기 위해 필요 
-
 ```txt
 # 버전정보입력
 
@@ -113,5 +111,8 @@ ubuntu@ip-***:~/deploy$ # 동작 안함 - 서버 요청이 막힘
 - git에 최종 소스코드가 올라 가있어야 한다 
 - 리눅스에서 기존의 흔적을 모드 삭제 해야한다 
 ```
-
+$ls -a 
+$ rm -r -f .virtualenvs
+- 로컬 PC
+$ fab new_server
 ```

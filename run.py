@@ -7,7 +7,7 @@ app = Flask(__name__)
 # 라우트 
 @app.route('/')
 def home():
-    return 'aws 홈페이지'
+    return 'aws 홈페이지- 수정 '
 
 
 # 실행 
