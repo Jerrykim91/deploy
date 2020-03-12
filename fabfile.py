@@ -21,7 +21,7 @@ env.hosts = [
     REMOTE_HOST_SSH,
 ]
 env.use_ssh_config = True
-env.key_filename = '../ar_davinci.pem'
+env.key_filename = '../jerrykim91.pem' # 변경
 project_folder = '/home/{}/{}'.format(env.user, PROJECT_NAME)
 apt_requirements = [
     'curl',
