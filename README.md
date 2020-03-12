@@ -8,7 +8,7 @@ deploy
 2. 로컬 PC에서 aws폴더를 vscode 에서 오픈 
 3. 터미널 오픈
 4. `$ git clone https://github.com/유저아이디/deploy.git`
-5. 터미널에서 경로 이동   `cd deploy`
+5. 터미널에서 경로 이동  `cd deploy`
 
 # 파일 세팅 (~/aws/deploy)
 1. deploy.json, fabfile.py 두 파일을 deploy에 옮긴다 
@@ -32,7 +32,7 @@ deploy
   }
 ```
 
-6. reguirements.txt 
+6. requirements.txt 
     - 본서비스를 구동하기 위해 필요 
 
 ```txt
@@ -90,18 +90,18 @@ would you update?: [y/n]y
 
 ``` bash
 # 디렉토리 확인 
-ubuntu@ip-172-31-37-87:~$ ls
+ubuntu@ip-***:~$ ls
 deploy
-ubuntu@ip-172-31-37-87:~$ cd deploy
-ubuntu@ip-172-31-37-87:~/deploy$ ls
+ubuntu@ip-***:~$ cd deploy
+ubuntu@ip-***:~/deploy$ ls
 README.md  deploy.json  fabfile.py  reguirements.txt  run.py  wsgi.py
-ubuntu@ip-172-31-37-87:~/deploy$
+ubuntu@ip-***:~/deploy$
 
 # 로그 확인 
-ubuntu@ip-172-31-37-87:~/deploy$ tail -f /var/apache2/access.log
+ubuntu@ip-***:~/deploy$ tail -f /var/apache2/access.log
 tail: cannot open '/var/apache2/access.log' for reading: No such file or directory
 tail: no files remaining
-ubuntu@ip-172-31-37-87:~/deploy$ # 동작 안함 - 서버 요청이 막힘 
+ubuntu@ip-***:~/deploy$ # 동작 안함 - 서버 요청이 막힘 
 
 ```
 - 인바운드 룰 
