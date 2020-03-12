@@ -16,3 +16,29 @@ deploy
 3. run.py, wsgi.py 생성
 4. 코드작성 
 5. 배포관련 환경 변수 파일 수정(deploy.json) 
+
+```json
+// deploy.json
+{
+    //  깃허브 경로 
+    "REPO_URL":"https://github.com/유저아이디/deploy",
+    // 이름 
+    "PROJECT_NAME":"이름",
+    //  IPv4 :아마존 퍼플릭 도메인 - 만약 도매인 구매하면 : 아이피를 집어 넣으면 됨 
+    "REMOTE_HOST":" 주소 ",
+    //  IPv4 퍼블릭 IP
+    "REMOTE_HOST_SSH":"IP",
+    "REMOTE_USER":"ubuntu"
+  }
+```
+6. reguirements.txt : 본서비스를 구동하기 위해 필요 
+```txt
+<!-- 버전정보입력 -->
+flask ==  1.0.2  
+```
+
+# 구동 
+- python3 버전 기반으로 수행 
+- 운영 체계 및 서버 세팅 및 배포, 업데이트 관리등을 자동화 하는 모듈 => fabric3
+- `$ pip3 install fabric3`
+- git에 최종 소스 반영 
